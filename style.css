@@ -97,6 +97,43 @@ body {
   pointer-events: none;
   z-index: 1;
 }
+
+/* Page-wide parallax decoration (uses images 2.png - 5.png) */
+.parallax-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.parallax-item {
+  position: absolute;
+  max-width: 260px;
+  opacity: 0.95;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.25s ease-out;
+}
+.parallax-item.p1 {
+  top: 8%;
+  left: 6%;
+  width: 170px;
+}
+.parallax-item.p2 {
+  top: 22%;
+  right: 6%;
+  width: 140px;
+}
+.parallax-item.p3 {
+  bottom: 8%;
+  left: 10%;
+  width: 180px;
+}
+.parallax-item.p4 {
+  bottom: 12%;
+  right: 10%;
+  width: 220px;
+}
+
 .hero-inner {
   position: relative;
   z-index: 3;
@@ -126,7 +163,7 @@ body {
   inset: 0;
   pointer-events: none;
 }
-.hero-layer {
+.parallax-item {
   position: absolute;
   max-width: 260px;
   opacity: 0.95;
@@ -134,25 +171,25 @@ body {
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s ease-out;
 }
-.hero-layer.layer1 {
+.parallax-item.p1 {
   top: 10%;
   left: 8%;
   width: 170px;
   opacity: 0.92;
 }
-.hero-layer.layer2 {
+.parallax-item.p2 {
   top: 18%;
   right: 6%;
   width: 140px;
   opacity: 0.84;
 }
-.hero-layer.layer3 {
+.parallax-item.p3 {
   bottom: 10%;
   left: 12%;
   width: 180px;
   opacity: 0.78;
 }
-.hero-layer.layer4 {
+.parallax-item.p4 {
   bottom: 14%;
   right: 12%;
   width: 220px;
@@ -268,8 +305,9 @@ body {
   .ring {
     animation: none !important;
   }
-  .hero-layer {
+  .parallax-item {
     transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -413,7 +451,7 @@ body {
     grid-template-columns: 1fr;
   }
   .ring,
-  .hero-layer {
+  .parallax-item {
     display: none;
   }
   .hero {
@@ -431,4 +469,12 @@ body.theme-light .logo {
 }
 body.theme-light .btn {
   color: #fff;
+}
+body.theme-light .project-card {
+  background: #eaf4ff;
+  border-color: rgba(11, 27, 35, 0.08);
+}
+body.theme-light .project-card h4,
+body.theme-light .project-card p {
+  color: #0b1b23;
 }

@@ -55,7 +55,8 @@ const explainSection = document.getElementById("explain");
 const thankMessageEl = document.getElementById("thankMessage");
 const themeToggle = document.getElementById("themeToggle");
 const hero = document.getElementById("hero");
-const heroLayers = document.querySelectorAll(".hero-layer");
+// use the parallax items placed site-wide (images 2-5)
+const parallaxItems = document.querySelectorAll(".parallax-item");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 );
@@ -197,10 +198,13 @@ function updateHeroParallax() {
   const scrolled = window.scrollY;
   if (hero) hero.style.backgroundPosition = `center ${50 + scrolled * 0.06}%`;
   if (reducedMotion) return;
-  heroLayers.forEach((layer, index) => {
+  parallaxItems.forEach((layer, index) => {
     const speedValues = [0.02, 0.05, 0.035, 0.06];
+    const hMult = index % 2 === 0 ? -1 : 1; // alternate horizontal direction
     const speed = speedValues[index] || 0.04;
-    layer.style.transform = `translateY(${scrolled * speed}px)`;
+    const x = scrolled * speed * 0.4 * hMult;
+    const y = scrolled * speed;
+    layer.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   });
 }
 window.addEventListener("scroll", updateHeroParallax);
