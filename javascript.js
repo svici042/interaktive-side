@@ -55,8 +55,10 @@ const explainSection = document.getElementById("explain");
 const thankMessageEl = document.getElementById("thankMessage");
 const themeToggle = document.getElementById("themeToggle");
 const hero = document.getElementById("hero");
-const heroLayers = document.querySelectorAll('.hero-layer');
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const heroLayers = document.querySelectorAll(".hero-layer");
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 const reducedMotion = prefersReducedMotion.matches;
 // Utility functions
 function formatCurrency(n) {
