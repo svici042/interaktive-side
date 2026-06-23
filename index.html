@@ -1,11 +1,185 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Laptop Support — Donation Landing</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <title>Support my development</title>
   </head>
-  <body></body>
+  <body class="theme-dark">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="#hero">Dev Laptop Fund</a>
+        <nav class="site-nav">
+          <a href="#donate">Donate</a>
+          <a href="#vipps">Vipps</a>
+          <a href="#progress">Progress</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+        </nav>
+        <div class="controls">
+          <button id="themeToggle" aria-label="Toggle theme">Light</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-inner container">
+          <h1>Help me get a powerful development laptop</h1>
+          <p class="hero-sub">Goal: 50 000 NOK — 128 GB RAM / 2 TB SSD</p>
+          <div class="hero-cta">
+            <a href="#donate" class="btn">Support with a donation</a>
+            <button id="whyToggle" class="btn alt">Why this laptop?</button>
+          </div>
+        </div>
+
+        <!-- Orbit rings with code fragments -->
+        <div class="rings">
+          <div class="ring ring1" aria-hidden="true">
+            <span>HTML</span><span>CSS</span><span>JavaScript</span
+            ><span>const</span><span>function()</span><span>arrays</span
+            ><span>objects</span><span>DOM</span><span>Git</span
+            ><span>API</span>
+          </div>
+          <div class="ring ring2" aria-hidden="true">
+            <span>JavaScript</span><span>DOM</span><span>objects</span
+            ><span>arrays</span><span>const</span><span>function()</span
+            ><span>CSS</span><span>HTML</span><span>API</span><span>Git</span>
+          </div>
+          <div class="ring ring3" aria-hidden="true">
+            <span>API</span><span>DOM</span><span>Git</span><span>objects</span
+            ><span>arrays</span><span>function()</span><span>const</span
+            ><span>HTML</span><span>CSS</span><span>JavaScript</span>
+          </div>
+        </div>
+        <div class="hero-images" aria-hidden="true">
+          <img class="hero-layer layer1" src="images/2.png" alt="" />
+          <img class="hero-layer layer2" src="images/3.png" alt="" />
+          <img class="hero-layer layer3" src="images/4.png" alt="" />
+          <img class="hero-layer layer4" src="images/5.png" alt="" />
+        </div>
+      </section>
+
+      <section id="donate" class="container donate-section">
+        <h2>Donate</h2>
+        <p>
+          Select an amount or enter a custom amount. Donations via Vipps are
+          real and handled manually.
+        </p>
+
+        <div class="donation-controls">
+          <div class="preset-buttons">
+            <button class="preset" data-amount="50">50 NOK</button>
+            <button class="preset" data-amount="100">100 NOK</button>
+            <button class="preset" data-amount="250">250 NOK</button>
+            <button class="preset" data-amount="500">500 NOK</button>
+            <button class="preset" data-amount="1000">1000 NOK</button>
+          </div>
+
+          <form id="donationForm" class="donation-form">
+            <label>
+              Your name
+              <input id="donorName" type="text" placeholder="Your name" />
+            </label>
+            <label>
+              Amount (NOK)
+              <input
+                id="donationAmount"
+                type="number"
+                min="1"
+                placeholder="e.g. 250"
+              />
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn">Donate</button>
+              <div
+                id="thankMessage"
+                class="thank-message"
+                aria-live="polite"
+              ></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="vipps" class="container vipps-section">
+        <h2>Send donation with Vipps</h2>
+        <div class="vipps-grid">
+          <div class="vipps-info">
+            <p><strong>Vipps number:</strong> +47 465 64 004</p>
+            <p><strong>Message:</strong> Laptop support</p>
+            <p>
+              Donations are real. After sending, you can add your donation here
+              for the demo donor wall.
+            </p>
+          </div>
+          <div class="vipps-qr">
+            <img
+              src="images/vipps-qr-placeholder.png"
+              alt="Vipps QR code placeholder"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="progress" class="container progress-section">
+        <h2>Progress</h2>
+        <div class="progress-stats">
+          <div class="raised">
+            Raised: <span id="raisedAmount">0</span> NOK / 50 000 NOK
+          </div>
+          <div class="percentage">
+            Progress: <span id="progressPercent">0</span>%
+          </div>
+        </div>
+        <div
+          class="progress-bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+        >
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </section>
+
+      <section id="donors" class="container donors-section">
+        <h2>Donor Wall</h2>
+        <div id="donorList" class="donor-list"></div>
+      </section>
+
+      <section id="projects" class="container projects-section">
+        <h2>Projects this laptop will enable</h2>
+        <div id="projectsGrid" class="projects-grid"></div>
+      </section>
+
+      <section id="explain" class="container explain-section hidden">
+        <h3>Why this laptop?</h3>
+        <p>
+          This laptop will enable large web apps, video and audio editing, AI
+          experiments, local development and faster iteration. The extra RAM and
+          fast SSD reduce build times and make working with large datasets and
+          virtual machines feasible.
+        </p>
+      </section>
+
+      <section id="about" class="container about-section">
+        <h2>About this school project</h2>
+        <p>
+          This website is an interactive JavaScript school project. It
+          demonstrates DOM manipulation, variables, functions, arrays, objects,
+          loops, conditions and events. Donations are real and handled manually
+          through Vipps.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <small>&copy; Laptop Fund — donation landing page</small>
+    </footer>
+
+    <script src="javascript.js"></script>
+  </body>
 </html>
