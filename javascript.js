@@ -53,10 +53,10 @@ const projectsGrid = document.getElementById("projectsGrid");
 const whyToggle = document.getElementById("whyToggle");
 const explainSection = document.getElementById("explain");
 const thankMessageEl = document.getElementById("thankMessage");
-const themeToggle = document.getElementById("themeToggle");
 const hero = document.getElementById("hero");
-// use the parallax items placed site-wide (images 2-5)
+// use the parallax items placed in the hero and across the page (images 2-5)
 const parallaxItems = document.querySelectorAll(".parallax-item");
+const pageParallaxItems = document.querySelectorAll(".page-parallax-item");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 );
@@ -171,28 +171,6 @@ if (whyToggle && explainSection) {
   });
 }
 
-// Theme toggle
-function applyTheme(theme) {
-  if (theme === "light") {
-    document.body.classList.add("theme-light");
-    document.body.classList.remove("theme-dark");
-    if (themeToggle) themeToggle.textContent = "Dark";
-  } else {
-    document.body.classList.add("theme-dark");
-    document.body.classList.remove("theme-light");
-    if (themeToggle) themeToggle.textContent = "Light";
-  }
-}
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    const isLight = document.body.classList.contains("theme-light");
-    const newTheme = isLight ? "dark" : "light";
-    applyTheme(newTheme);
-    localStorage.setItem("siteTheme", newTheme);
-  });
-}
-
 // Smooth parallax effect for hero background (guard)
 function updateHeroParallax() {
   const scrolled = window.scrollY;
@@ -205,6 +183,15 @@ function updateHeroParallax() {
     const x = scrolled * speed * 0.4 * hMult;
     const y = scrolled * speed;
     layer.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+  pageParallaxItems.forEach((layer, index) => {
+    const speedValues = [-0.08, -0.13, -0.06, -0.1];
+    const hMult = index % 2 === 0 ? 1 : -1;
+    const speed = speedValues[index] || -0.08;
+    const x = Math.sin(scrolled * 0.004 + index) * 18 * hMult;
+    const y = scrolled * speed;
+    const rotate = Math.sin(scrolled * 0.002 + index) * 5;
+    layer.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
   });
 }
 window.addEventListener("scroll", updateHeroParallax);
@@ -233,9 +220,6 @@ window.addEventListener("scroll", updateHeroParallax);
 
 // Initialize
 function init() {
-  // restore theme
-  const savedTheme = localStorage.getItem("siteTheme") || "dark";
-  applyTheme(savedTheme);
   renderProjects();
   updateProgress();
 }

@@ -30,6 +30,7 @@ body {
   background: var(--bg);
   color: #e6eef6;
   line-height: 1.4;
+  overflow-x: hidden;
 }
 .container {
   max-width: 1100px;
@@ -39,11 +40,18 @@ body {
 
 /* Header */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 30;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent);
-  backdrop-filter: blur(4px);
+  background: rgba(11, 15, 20, 0.7);
+  backdrop-filter: blur(8px);
+}
+main {
+  padding-top: 64px;
+  position: relative;
+  z-index: 2;
 }
 .header-inner {
   display: flex;
@@ -60,14 +68,6 @@ body {
   margin: 0 0.5rem;
   text-decoration: none;
 }
-.controls button {
-  background: transparent;
-  border: 1px solid var(--glass);
-  color: var(--muted);
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
-}
-
 /* Hero */
 .hero {
   position: relative;
@@ -79,6 +79,52 @@ body {
   background-image: url("images/hero.png");
   background-size: cover;
   background-position: center center;
+}
+
+/* Full-page parallax decorations */
+.page-parallax {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.page-parallax::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 35%, rgba(124, 219, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 78% 64%, rgba(126, 245, 199, 0.08), transparent 26%);
+}
+.page-parallax-item {
+  position: absolute;
+  width: clamp(110px, 15vw, 230px);
+  opacity: 0.18;
+  filter: blur(0.3px) saturate(1.05) drop-shadow(0 22px 45px rgba(0, 0, 0, 0.45));
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.18s ease-out;
+}
+.page-p1 {
+  top: 78vh;
+  left: -36px;
+}
+.page-p2 {
+  top: 118vh;
+  right: -32px;
+}
+.page-p3 {
+  top: 176vh;
+  left: 6vw;
+}
+.page-p4 {
+  top: 222vh;
+  right: 8vw;
+  width: clamp(130px, 18vw, 280px);
+}
+.site-footer {
+  position: relative;
+  z-index: 2;
 }
 .hero-overlay {
   position: absolute;
@@ -305,7 +351,8 @@ body {
   .ring {
     animation: none !important;
   }
-  .parallax-item {
+  .parallax-item,
+  .page-parallax-item {
     transition: none !important;
     animation: none !important;
   }
@@ -451,7 +498,8 @@ body {
     grid-template-columns: 1fr;
   }
   .ring,
-  .parallax-item {
+  .parallax-item,
+  .page-parallax {
     display: none;
   }
   .hero {
@@ -459,22 +507,3 @@ body {
   }
 }
 
-/* Light theme */
-body.theme-light {
-  background: #f6fbff;
-  color: #0b1b23;
-}
-body.theme-light .logo {
-  color: #0b6b78;
-}
-body.theme-light .btn {
-  color: #fff;
-}
-body.theme-light .project-card {
-  background: #eaf4ff;
-  border-color: rgba(11, 27, 35, 0.08);
-}
-body.theme-light .project-card h4,
-body.theme-light .project-card p {
-  color: #0b1b23;
-}
