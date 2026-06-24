@@ -65,7 +65,7 @@ git lfs track "Video/*.mp4"
 
 ## Video Copyright Note
 
-The video `Cyber Society` is an original work by LovLaus Media. Any watermarks visible in the video are not advertising.
+The video `Cyber Society` is an original work by LovLaus Media. Any watermarks visible in the video are not promotional.
 
 ## Important Note About Donations
 
