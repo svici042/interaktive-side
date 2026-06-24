@@ -29,6 +29,10 @@ const projects = [
     title: "Portfolio Projects",
     desc: "High-quality portfolio with video and demos.",
   },
+  {
+    title: "Video and Audio Content",
+    desc: "Creating and editing video and audio content for learning, portfolio work and media projects.",
+  },
 ];
 
 // Thank you messages
