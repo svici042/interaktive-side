@@ -125,6 +125,19 @@ main {
 .site-footer {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  text-align: center;
+  padding-block: 2rem;
+  color: var(--muted);
+}
+.footer-logo {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
 }
 .hero-overlay {
   position: absolute;
