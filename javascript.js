@@ -60,6 +60,8 @@ const thankMessageEl = document.getElementById("thankMessage");
 const donationModal = document.getElementById("donationModal");
 const closeDonationModal = document.getElementById("closeDonationModal");
 const modalDonationAmount = document.getElementById("modalDonationAmount");
+const customVideoPlayer = document.getElementById("customVideoPlayer");
+const projectVideo = document.getElementById("projectVideo");
 const hero = document.getElementById("hero");
 // use the parallax items placed in the hero and across the page (images 2-5)
 const parallaxItems = document.querySelectorAll(".parallax-item");
@@ -146,6 +148,111 @@ function closeVippsModal() {
   if (!donationModal) return;
   donationModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
+}
+
+function formatVideoTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60)
+    .toString()
+    .padStart(2, "0");
+  return `${minutes}:${remainingSeconds}`;
+}
+
+function createVideoButton(label, className) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = className;
+  button.textContent = label;
+  return button;
+}
+
+function setupCustomVideoPlayer() {
+  if (!customVideoPlayer || !projectVideo) return;
+
+  const controls = document.createElement("div");
+  controls.className = "video-controls";
+
+  const playButton = createVideoButton("Play", "video-control-button");
+  const muteButton = createVideoButton("Mute", "video-control-button");
+
+  const progress = document.createElement("input");
+  progress.className = "video-progress";
+  progress.type = "range";
+  progress.min = "0";
+  progress.max = "100";
+  progress.value = "0";
+  progress.step = "0.1";
+  progress.setAttribute("aria-label", "Video progress");
+
+  const timeDisplay = document.createElement("span");
+  timeDisplay.className = "video-time";
+  timeDisplay.textContent = "0:00 / 0:00";
+
+  const volume = document.createElement("input");
+  volume.className = "video-volume";
+  volume.type = "range";
+  volume.min = "0";
+  volume.max = "1";
+  volume.value = projectVideo.volume;
+  volume.step = "0.05";
+  volume.setAttribute("aria-label", "Video volume");
+
+  controls.appendChild(playButton);
+  controls.appendChild(progress);
+  controls.appendChild(timeDisplay);
+  controls.appendChild(muteButton);
+  controls.appendChild(volume);
+  customVideoPlayer.appendChild(controls);
+
+  function updateVideoUi() {
+    const duration = projectVideo.duration || 0;
+    const currentTime = projectVideo.currentTime || 0;
+    progress.value = duration ? (currentTime / duration) * 100 : 0;
+    timeDisplay.textContent = `${formatVideoTime(currentTime)} / ${formatVideoTime(duration)}`;
+    playButton.textContent = projectVideo.paused ? "Play" : "Pause";
+    muteButton.textContent = projectVideo.muted ? "Unmute" : "Mute";
+  }
+
+  playButton.addEventListener("click", () => {
+    if (projectVideo.paused) {
+      projectVideo.play();
+    } else {
+      projectVideo.pause();
+    }
+  });
+
+  projectVideo.addEventListener("click", () => {
+    if (projectVideo.paused) {
+      projectVideo.play();
+    } else {
+      projectVideo.pause();
+    }
+  });
+
+  progress.addEventListener("input", () => {
+    if (!projectVideo.duration) return;
+    projectVideo.currentTime = (Number(progress.value) / 100) * projectVideo.duration;
+  });
+
+  muteButton.addEventListener("click", () => {
+    projectVideo.muted = !projectVideo.muted;
+    updateVideoUi();
+  });
+
+  volume.addEventListener("input", () => {
+    projectVideo.volume = Number(volume.value);
+    projectVideo.muted = projectVideo.volume === 0;
+    updateVideoUi();
+  });
+
+  projectVideo.addEventListener("loadedmetadata", updateVideoUi);
+  projectVideo.addEventListener("timeupdate", updateVideoUi);
+  projectVideo.addEventListener("play", updateVideoUi);
+  projectVideo.addEventListener("pause", updateVideoUi);
+  projectVideo.addEventListener("ended", updateVideoUi);
+
+  updateVideoUi();
 }
 
 // Render projects dynamically
@@ -257,6 +364,7 @@ window.addEventListener("scroll", updateHeroParallax);
 
 // Initialize
 function init() {
+  setupCustomVideoPlayer();
   renderProjects();
   updateProgress();
 }

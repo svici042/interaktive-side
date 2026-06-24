@@ -319,6 +319,51 @@ main {
 }
 
 /* Donation */
+.video-section {
+  padding: 2rem 1rem;
+}
+.video-player {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #05080c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+}
+.video-player video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #000;
+  cursor: pointer;
+}
+.video-controls {
+  display: grid;
+  grid-template-columns: auto minmax(120px, 1fr) auto auto minmax(90px, 140px);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.85rem;
+  background: rgba(15, 23, 32, 0.96);
+}
+.video-control-button {
+  min-width: 4.6rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(124, 219, 255, 0.12);
+  color: var(--accent);
+  cursor: pointer;
+}
+.video-progress,
+.video-volume {
+  width: 100%;
+  accent-color: var(--accent-2);
+}
+.video-time {
+  color: var(--muted);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
 .donation-section {
   padding: 2rem 1rem;
 }
@@ -524,6 +569,14 @@ body.modal-open {
 @media (max-width: 800px) {
   .donation-form {
     grid-template-columns: 1fr;
+  }
+  .video-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+  .video-progress,
+  .video-time,
+  .video-volume {
+    grid-column: 1 / -1;
   }
   .ring,
   .parallax-item,
