@@ -13,6 +13,7 @@
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 html,
 body {
@@ -35,6 +36,7 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+  width: min(100%, 1100px);
   padding: 1rem;
 }
 
@@ -57,18 +59,27 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 .logo {
   color: var(--accent);
   font-weight: 700;
   text-decoration: none;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
 }
 .site-nav a {
   color: var(--muted);
-  margin: 0 0.5rem;
   padding: 0.35rem 0.55rem;
   border-radius: 999px;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     color 180ms ease,
     box-shadow 180ms ease,
@@ -88,7 +99,7 @@ main {
 /* Hero */
 .hero {
   position: relative;
-  min-height: 60vh;
+  min-height: min(680px, 64vh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,6 +228,7 @@ main {
   z-index: 3;
   text-align: center;
   padding: 4rem 1rem;
+  max-width: 760px;
 }
 .hero h1 {
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
@@ -226,8 +238,14 @@ main {
   color: var(--muted);
   margin-bottom: 1rem;
 }
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
 .hero-cta .btn {
-  margin: 0.3rem;
+  margin: 0;
 }
 
 /* Rings */
@@ -367,7 +385,9 @@ main {
 .video-player video {
   display: block;
   width: 100%;
+  aspect-ratio: 16 / 9;
   max-height: 70vh;
+  object-fit: contain;
   background: #000;
   cursor: pointer;
 }
@@ -414,6 +434,7 @@ main {
   color: var(--accent);
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
+  cursor: pointer;
 }
 .donation-form {
   display: grid;
@@ -531,6 +552,7 @@ body.modal-open {
 /* Progress */
 .progress-stats {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
 }
@@ -564,6 +586,7 @@ body.modal-open {
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.03);
   display: flex;
+  gap: 0.75rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -593,6 +616,8 @@ body.modal-open {
   border-radius: 8px;
   text-decoration: none;
   border: none;
+  cursor: pointer;
+  text-align: center;
 }
 .btn.alt {
   background: transparent;
@@ -688,26 +713,344 @@ body.modal-open {
     inset 0 -4px 9px rgba(35, 0, 71, 0.4);
 }
 
-/* Responsive tweaks */
-@media (max-width: 800px) {
+/* Tablet layout */
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 112px;
+  }
+
+  main {
+    padding-top: 96px;
+  }
+
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .hero {
+    min-height: 58vh;
+  }
+
+  .ring1 {
+    width: 430px;
+    height: 430px;
+  }
+
+  .ring2 {
+    width: 340px;
+    height: 340px;
+  }
+
+  .ring3 {
+    width: 520px;
+    height: 520px;
+  }
+
+  .ring1 span {
+    transform-origin: 0 -215px;
+  }
+
+  .ring2 span {
+    transform-origin: 0 -170px;
+  }
+
+  .ring3 span {
+    transform-origin: 0 -250px;
+  }
+
+  .parallax-item.p1,
+  .parallax-item.p2 {
+    width: 130px;
+  }
+
+  .parallax-item.p3,
+  .parallax-item.p4 {
+    width: 170px;
+  }
+
   .donation-form {
     grid-template-columns: 1fr;
   }
+
+  .vipps-grid {
+    align-items: flex-start;
+  }
+
+  .video-controls {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .video-volume {
+    grid-column: 1 / -1;
+  }
+
+  .ring,
+  .page-parallax {
+    opacity: 0.45;
+  }
+}
+
+/* Phone layout */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 144px;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  .container {
+    padding: 0.85rem;
+  }
+
+  main {
+    padding-top: 132px;
+  }
+
+  .site-header {
+    background: rgba(11, 15, 20, 0.88);
+  }
+
+  .logo {
+    font-size: 0.98rem;
+  }
+
+  .site-nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .site-nav a {
+    min-height: 38px;
+    padding: 0.45rem 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88rem;
+  }
+
+  .hero {
+    min-height: calc(100svh - 132px);
+    background-position: center top;
+  }
+
+  .hero-inner {
+    padding: 3rem 0.85rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.75rem, 11vw, 2.45rem);
+  }
+
+  .hero-sub {
+    font-size: 0.98rem;
+  }
+
+  .hero-cta {
+    align-items: stretch;
+    flex-direction: column;
+    width: min(100%, 320px);
+    margin: 0 auto;
+  }
+
+  .hero-cta .btn,
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .video-section,
+  .donation-section {
+    padding: 1.5rem 0.85rem;
+  }
+
+  .video-player video {
+    max-height: 52vh;
+  }
+
   .video-controls {
     grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
   }
+
   .video-progress,
   .video-time,
   .video-volume {
     grid-column: 1 / -1;
   }
-  .ring,
-  .parallax-item,
-  .page-parallax {
+
+  .video-control-button {
+    min-width: 0;
+    min-height: 40px;
+  }
+
+  .preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset {
+    min-height: 42px;
+  }
+
+  .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .vipps-grid {
+    flex-direction: column;
+  }
+
+  .vipps-qr {
+    width: 100%;
+    text-align: center;
+  }
+
+  .vipps-qr img {
+    width: min(72vw, 230px);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .progress-stats {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .donor-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-modal {
+    align-items: flex-start;
+    padding: 0.75rem;
+    overflow: auto;
+  }
+
+  .donation-modal-panel {
+    width: 100%;
+    max-height: none;
+    padding: 1.1rem;
+  }
+
+  .donation-modal-panel h2 {
+    margin-inline: 2rem;
+    font-size: 1.25rem;
+  }
+
+  .footer-logo {
+    width: 88px;
+    height: 88px;
+  }
+
+  .ring {
     display: none;
   }
+
+  .page-parallax {
+    display: block;
+    opacity: 0.42;
+  }
+
+  .page-parallax::before {
+    background:
+      radial-gradient(circle at 20% 28%, rgba(124, 219, 255, 0.06), transparent 26%),
+      radial-gradient(circle at 82% 72%, rgba(126, 245, 199, 0.06), transparent 28%);
+  }
+
+  .page-parallax-item {
+    display: block;
+    width: clamp(72px, 22vw, 120px);
+    opacity: 0.2;
+  }
+
+  .page-p1 {
+    top: 22vh;
+    left: -22px;
+  }
+
+  .page-p2 {
+    top: 42vh;
+    right: -24px;
+  }
+
+  .page-p3 {
+    top: 66vh;
+    left: -12px;
+  }
+
+  .page-p4 {
+    top: 82vh;
+    right: -18px;
+    width: clamp(86px, 26vw, 140px);
+  }
+
+  .parallax-item {
+    display: block;
+    max-width: none;
+    opacity: 0.34;
+  }
+
+  .parallax-item.p1 {
+    top: 10%;
+    left: -18px;
+    width: 82px;
+  }
+
+  .parallax-item.p2 {
+    top: 20%;
+    right: -18px;
+    width: 76px;
+  }
+
+  .parallax-item.p3 {
+    bottom: 8%;
+    left: -22px;
+    width: 96px;
+  }
+
+  .parallax-item.p4 {
+    bottom: 10%;
+    right: -24px;
+    width: 104px;
+  }
+}
+
+@media (max-width: 380px) {
+  main {
+    padding-top: 176px;
+  }
+
+  html {
+    scroll-padding-top: 188px;
+  }
+
+  .site-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero {
-    min-height: 50vh;
+    min-height: calc(100svh - 176px);
+  }
+
+  .preset-buttons {
+    grid-template-columns: 1fr;
   }
 }
 
