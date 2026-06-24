@@ -311,7 +311,12 @@ document.addEventListener("keydown", (e) => {
 // Why toggle show/hide
 if (whyToggle && explainSection) {
   whyToggle.addEventListener("click", () => {
-    explainSection.classList.toggle("hidden");
+    explainSection.classList.remove("hidden");
+    const header = document.querySelector(".site-header");
+    const headerHeight = header ? header.offsetHeight : 0;
+    const rect = explainSection.getBoundingClientRect();
+    const offsetTop = window.scrollY + rect.top - headerHeight - 12;
+    window.scrollTo({ top: offsetTop, behavior: "smooth" });
   });
 }
 
