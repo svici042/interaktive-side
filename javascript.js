@@ -12,15 +12,15 @@ const donors = []; // array of donor objects {name,amount}
 const projects = [
   {
     title: "Web Development",
-    desc: "Full-stack web apps, performance and scalable UI.",
+    desc: "Full-stack web apps, performance, and scalable UI design.",
   },
   {
     title: "AI Experiments",
-    desc: "Local model training, experiments and tooling.",
+    desc: "Local model training, experiments, and tooling.",
   },
   {
     title: "Creative Coding",
-    desc: "Visuals, generative art and interactive installations.",
+    desc: "Visuals, generative art, and interactive installations.",
   },
   {
     title: "Marine Navigation App",
@@ -28,11 +28,11 @@ const projects = [
   },
   {
     title: "Portfolio Projects",
-    desc: "High-quality portfolio with video and demos.",
+    desc: "High-quality portfolio projects with videos and demos.",
   },
   {
     title: "Video and Audio Content",
-    desc: "Creating and editing video and audio content for learning, portfolio work and media projects.",
+    desc: "Creating and editing video and audio content for learning, portfolio work, and media projects.",
   },
 ];
 
@@ -95,11 +95,11 @@ function createDonorCard(donor) {
   const impact = document.createElement("div");
   // impact message based on amount
   if (donor.amount < 100) {
-    impact.textContent = "Small support — thank you!";
+    impact.textContent = "Small contribution — thank you!";
   } else if (donor.amount >= 100 && donor.amount < 500) {
-    impact.textContent = "Medium support — very grateful!";
+    impact.textContent = "Medium contribution — very grateful!";
   } else {
-    impact.textContent = "Strong support — huge thanks!";
+    impact.textContent = "Generous contribution — huge thanks!";
   }
   card.appendChild(text);
   card.appendChild(impact);
@@ -139,6 +139,7 @@ function addDonor(name, amount) {
   return true;
 }
 
+// Open the Vipps QR modal after a valid donation form submit
 function openDonationModal(amount) {
   if (!donationModal) return;
   if (modalDonationAmount) {
@@ -149,12 +150,14 @@ function openDonationModal(amount) {
   if (closeDonationModal) closeDonationModal.focus();
 }
 
+// Close the Vipps QR modal and restore page scrolling
 function closeVippsModal() {
   if (!donationModal) return;
   donationModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
 }
 
+// Format video seconds as minutes:seconds for the custom player
 function formatVideoTime(seconds) {
   if (!Number.isFinite(seconds)) return "0:00";
   const minutes = Math.floor(seconds / 60);
@@ -164,6 +167,7 @@ function formatVideoTime(seconds) {
   return `${minutes}:${remainingSeconds}`;
 }
 
+// Create reusable video control buttons with DOM methods
 function createVideoButton(label, className) {
   const button = document.createElement("button");
   button.type = "button";
@@ -172,6 +176,7 @@ function createVideoButton(label, className) {
   return button;
 }
 
+// Build custom video controls with JavaScript and attach video events
 function setupCustomVideoPlayer() {
   if (!customVideoPlayer || !projectVideo) return;
 
@@ -300,15 +305,18 @@ if (donationForm) {
 }
 
 if (closeDonationModal) {
+  // Close modal with the X button
   closeDonationModal.addEventListener("click", closeVippsModal);
 }
 
 if (donationModal) {
+  // Close modal when clicking the dark overlay outside the modal panel
   donationModal.addEventListener("click", (e) => {
     if (e.target === donationModal) closeVippsModal();
   });
 }
 
+// Close modal with Escape for keyboard users
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeVippsModal();
 });
