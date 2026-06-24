@@ -4,6 +4,7 @@
 
 // Configuration and state variables
 const GOAL_AMOUNT = 50000; // NOK
+const MAX_DONATION_AMOUNT = 50000; // NOK
 let raisedAmount = 0; // current raised (demo-local)
 const donors = []; // array of donor objects {name,amount}
 
@@ -112,8 +113,12 @@ function addDonor(name, amount) {
     return false;
   }
   amount = Number(amount);
-  if (!amount || amount <= 0) {
-    alert("Please enter an amount greater than 0.");
+  if (!Number.isFinite(amount) || amount <= 0) {
+    alert("Please enter a valid amount greater than 0.");
+    return false;
+  }
+  if (amount > MAX_DONATION_AMOUNT) {
+    alert(`Please enter an amount up to ${formatCurrency(MAX_DONATION_AMOUNT)} NOK.`);
     return false;
   }
   const donor = { name: name.trim(), amount: amount };
