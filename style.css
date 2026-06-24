@@ -97,7 +97,6 @@ main {
   background-size: cover;
   background-position: center center;
 }
-
 /* Full-page parallax decorations */
 .page-parallax {
   position: fixed;
@@ -173,6 +172,7 @@ main {
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  perspective: 900px;
 }
 .parallax-item {
   position: absolute;
@@ -181,32 +181,37 @@ main {
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s ease-out;
+  transform-origin: center;
+  will-change: transform;
 }
 .parallax-item.p1 {
-  top: 10%;
-  left: 8%;
-  width: 170px;
+  top: 8%;
+  left: 5%;
+  width: 190px;
   opacity: 0.92;
+  z-index: 1;
 }
 .parallax-item.p2 {
-  top: 18%;
-  right: 6%;
-  width: 140px;
+  top: 16%;
+  right: 4%;
+  width: 155px;
   opacity: 0.84;
+  z-index: 2;
 }
 .parallax-item.p3 {
-  bottom: 10%;
-  left: 12%;
-  width: 180px;
-  opacity: 0.78;
+  bottom: 6%;
+  left: 8%;
+  width: 230px;
+  opacity: 0.9;
+  z-index: 3;
 }
 .parallax-item.p4 {
-  bottom: 14%;
-  right: 12%;
-  width: 220px;
+  bottom: 9%;
+  right: 8%;
+  width: 260px;
   opacity: 0.9;
+  z-index: 4;
 }
-
 .hero-inner {
   position: relative;
   z-index: 3;

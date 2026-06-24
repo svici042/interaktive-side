@@ -331,21 +331,26 @@ function updateHeroParallax() {
   if (hero) hero.style.backgroundPosition = `center ${50 + scrolled * 0.06}%`;
   if (reducedMotion) return;
   parallaxItems.forEach((layer, index) => {
-    const speedValues = [0.02, 0.05, 0.035, 0.06];
+    const speedValues = [-0.035, 0.09, 0.055, 0.13];
+    const scaleValues = [0.92, 1.02, 1.16, 1.08];
     const hMult = index % 2 === 0 ? -1 : 1; // alternate horizontal direction
     const speed = speedValues[index] || 0.04;
-    const x = scrolled * speed * 0.4 * hMult;
+    const scale = scaleValues[index] || 1;
+    const x = scrolled * speed * 0.8 * hMult;
     const y = scrolled * speed;
-    layer.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    const rotate = Math.sin(scrolled * 0.003 + index) * 4;
+    layer.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
   });
   pageParallaxItems.forEach((layer, index) => {
-    const speedValues = [-0.08, -0.13, -0.06, -0.1];
+    const speedValues = [-0.12, -0.2, -0.09, -0.16];
+    const scaleValues = [0.88, 1.08, 0.96, 1.18];
     const hMult = index % 2 === 0 ? 1 : -1;
     const speed = speedValues[index] || -0.08;
-    const x = Math.sin(scrolled * 0.004 + index) * 18 * hMult;
+    const scale = scaleValues[index] || 1;
+    const x = Math.sin(scrolled * 0.004 + index) * 32 * hMult;
     const y = scrolled * speed;
-    const rotate = Math.sin(scrolled * 0.002 + index) * 5;
-    layer.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`;
+    const rotate = Math.sin(scrolled * 0.002 + index) * 8;
+    layer.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg) scale(${scale})`;
   });
 }
 window.addEventListener("scroll", updateHeroParallax);
