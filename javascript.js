@@ -53,6 +53,9 @@ const projectsGrid = document.getElementById("projectsGrid");
 const whyToggle = document.getElementById("whyToggle");
 const explainSection = document.getElementById("explain");
 const thankMessageEl = document.getElementById("thankMessage");
+const donationModal = document.getElementById("donationModal");
+const closeDonationModal = document.getElementById("closeDonationModal");
+const modalDonationAmount = document.getElementById("modalDonationAmount");
 const hero = document.getElementById("hero");
 // use the parallax items placed in the hero and across the page (images 2-5)
 const parallaxItems = document.querySelectorAll(".parallax-item");
@@ -125,6 +128,22 @@ function addDonor(name, amount) {
   return true;
 }
 
+function openDonationModal(amount) {
+  if (!donationModal) return;
+  if (modalDonationAmount) {
+    modalDonationAmount.textContent = `Selected amount: ${formatCurrency(amount)} NOK`;
+  }
+  donationModal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  if (closeDonationModal) closeDonationModal.focus();
+}
+
+function closeVippsModal() {
+  if (!donationModal) return;
+  donationModal.classList.add("hidden");
+  document.body.classList.remove("modal-open");
+}
+
 // Render projects dynamically
 function renderProjects() {
   projectsGrid.innerHTML = "";
@@ -159,10 +178,24 @@ if (donationForm) {
     const name = donorNameInput ? donorNameInput.value : "";
     const amount = donationAmountInput ? donationAmountInput.value : "";
     if (addDonor(name, amount)) {
-      // optionally animate or focus
+      openDonationModal(Number(amount));
     }
   });
 }
+
+if (closeDonationModal) {
+  closeDonationModal.addEventListener("click", closeVippsModal);
+}
+
+if (donationModal) {
+  donationModal.addEventListener("click", (e) => {
+    if (e.target === donationModal) closeVippsModal();
+  });
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeVippsModal();
+});
 
 // Why toggle show/hide
 if (whyToggle && explainSection) {

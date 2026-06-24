@@ -115,7 +115,6 @@
         <h2>Send donation with Vipps</h2>
         <div class="vipps-grid">
           <div class="vipps-info">
-            <p><strong>Vipps number:</strong> +47 465 64 004</p>
             <p><strong>Message:</strong> Laptop support</p>
             <p>
               Donations are real. After sending, you can add your donation here
@@ -179,6 +178,38 @@
         </p>
       </section>
     </main>
+
+    <div
+      id="donationModal"
+      class="donation-modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="donationModalTitle"
+    >
+      <div class="donation-modal-panel">
+        <button
+          id="closeDonationModal"
+          class="modal-close"
+          type="button"
+          aria-label="Close donation instructions"
+        >
+          &times;
+        </button>
+        <h2 id="donationModalTitle">Donate with Vipps QR</h2>
+        <p id="modalDonationAmount" class="modal-donation-amount"></p>
+        <img
+          class="modal-qr"
+          src="QR%20for%20Vipps.jpg"
+          alt="Vipps QR code"
+        />
+        <div class="modal-instructions">
+          <p>Open Vipps on your phone and choose the QR scanner.</p>
+          <p>Scan this code, enter the donation amount, and use this message:</p>
+          <p><strong>Laptop support</strong></p>
+          <p>After you send it, your donation is shown on the demo donor wall.</p>
+        </div>
+      </div>
+    </div>
 
     <footer class="site-footer container">
       <small>&copy; LovLaus Media Laptop Fund — donation landing page</small>

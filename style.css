@@ -106,19 +106,19 @@ main {
   transition: transform 0.18s ease-out;
 }
 .page-p1 {
-  top: 78vh;
+  top: 18vh;
   left: -36px;
 }
 .page-p2 {
-  top: 118vh;
+  top: 36vh;
   right: -32px;
 }
 .page-p3 {
-  top: 176vh;
+  top: 62vh;
   left: 6vw;
 }
 .page-p4 {
-  top: 222vh;
+  top: 76vh;
   right: 8vw;
   width: clamp(130px, 18vw, 280px);
 }
@@ -137,77 +137,12 @@ main {
   pointer-events: none;
   z-index: 2;
 }
-.hero-images {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
-
 /* Page-wide parallax decoration (uses images 2.png - 5.png) */
 .parallax-decor {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-}
-.parallax-item {
-  position: absolute;
-  max-width: 260px;
-  opacity: 0.95;
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.25s ease-out;
-}
-.parallax-item.p1 {
-  top: 8%;
-  left: 6%;
-  width: 170px;
-}
-.parallax-item.p2 {
-  top: 22%;
-  right: 6%;
-  width: 140px;
-}
-.parallax-item.p3 {
-  bottom: 8%;
-  left: 10%;
-  width: 180px;
-}
-.parallax-item.p4 {
-  bottom: 12%;
-  right: 10%;
-  width: 220px;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 4rem 1rem;
-}
-.hero h1 {
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  margin: 0 0 0.5rem;
-}
-.hero-sub {
-  color: var(--muted);
-  margin-bottom: 1rem;
-}
-.hero-cta .btn {
-  margin: 0.3rem;
-}
-
-/* Rings */
-.rings {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.hero-images {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
 }
 .parallax-item {
   position: absolute;
@@ -240,6 +175,31 @@ main {
   right: 12%;
   width: 220px;
   opacity: 0.9;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.hero h1 {
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  margin: 0 0 0.5rem;
+}
+.hero-sub {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.hero-cta .btn {
+  margin: 0.3rem;
+}
+
+/* Rings */
+.rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 .ring {
   position: absolute;
@@ -400,6 +360,74 @@ main {
 .thank-message {
   color: var(--accent-2);
   font-weight: 600;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+.donation-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(3, 8, 13, 0.78);
+  backdrop-filter: blur(8px);
+}
+.donation-modal.hidden {
+  display: none;
+}
+.donation-modal-panel {
+  position: relative;
+  width: min(92vw, 460px);
+  max-height: 90vh;
+  overflow: auto;
+  padding: 1.4rem;
+  border-radius: 8px;
+  background: #0f1720;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+.donation-modal-panel h2 {
+  margin: 0 2rem 0.4rem;
+}
+.modal-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.modal-donation-amount {
+  margin: 0 0 1rem;
+  color: var(--accent-2);
+  font-weight: 700;
+}
+.modal-qr {
+  width: min(72vw, 260px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: #fff;
+}
+.modal-instructions {
+  margin-top: 1rem;
+  color: var(--muted);
+  text-align: left;
+}
+.modal-instructions p {
+  margin: 0.55rem 0;
 }
 
 /* Vipps */
