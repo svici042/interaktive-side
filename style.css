@@ -121,14 +121,23 @@ main {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 18% 35%, rgba(124, 219, 255, 0.08), transparent 24%),
-    radial-gradient(circle at 78% 64%, rgba(126, 245, 199, 0.08), transparent 26%);
+    radial-gradient(
+      circle at 18% 35%,
+      rgba(124, 219, 255, 0.08),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 78% 64%,
+      rgba(126, 245, 199, 0.08),
+      transparent 26%
+    );
 }
 .page-parallax-item {
   position: absolute;
   width: clamp(110px, 15vw, 230px);
   opacity: 0.18;
-  filter: blur(0.3px) saturate(1.05) drop-shadow(0 22px 45px rgba(0, 0, 0, 0.45));
+  filter: blur(0.3px) saturate(1.05)
+    drop-shadow(0 22px 45px rgba(0, 0, 0, 0.45));
   transform: translate3d(0, 0, 0);
   transition: transform 0.18s ease-out;
 }
@@ -382,14 +391,13 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
 }
-.video-player video {
+.youtube-player iframe {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   max-height: 70vh;
-  object-fit: contain;
+  border: 0;
   background: #000;
-  cursor: pointer;
 }
 .video-controls {
   display: grid;
@@ -627,7 +635,11 @@ body.modal-open {
 .btn.why-neon {
   position: relative;
   background:
-    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.72), transparent 18%),
+    radial-gradient(
+      circle at 50% 12%,
+      rgba(255, 255, 255, 0.72),
+      transparent 18%
+    ),
     linear-gradient(180deg, #ffd19c 0%, #ff9b35 38%, #ff7012 62%, #a83b00 100%);
   color: #160900;
   border: 1px solid rgba(255, 180, 92, 0.9);
@@ -671,7 +683,11 @@ body.modal-open {
 .btn.donate-neon {
   position: relative;
   background:
-    radial-gradient(circle at 50% 12%, rgba(255, 255, 255, 0.76), transparent 18%),
+    radial-gradient(
+      circle at 50% 12%,
+      rgba(255, 255, 255, 0.76),
+      transparent 18%
+    ),
     linear-gradient(180deg, #efccff 0%, #c983ff 38%, #a94cff 62%, #5b16ad 100%);
   color: #13001f;
   border: 1px solid rgba(213, 137, 255, 0.9);
@@ -970,8 +986,16 @@ body.modal-open {
 
   .page-parallax::before {
     background:
-      radial-gradient(circle at 20% 28%, rgba(124, 219, 255, 0.06), transparent 26%),
-      radial-gradient(circle at 82% 72%, rgba(126, 245, 199, 0.06), transparent 28%);
+      radial-gradient(
+        circle at 20% 28%,
+        rgba(124, 219, 255, 0.06),
+        transparent 26%
+      ),
+      radial-gradient(
+        circle at 82% 72%,
+        rgba(126, 245, 199, 0.06),
+        transparent 28%
+      );
   }
 
   .page-parallax-item {
@@ -1053,4 +1077,3 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 }
-
